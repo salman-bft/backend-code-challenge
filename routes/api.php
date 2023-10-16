@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\ToDoController;
 use App\Http\Controllers\VerificationController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,8 +25,8 @@ Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], funct
 
 });
 
-Route::post('/register', [AuthController::class,'register']);
-Route::post('/login', [AuthController::class,'login']);
+Route::post('/register', [RegistrationController::class,'register']);
+Route::post('/login', [LoginController::class,'login']);
 Route::post('/verify-code', [VerificationController::class,'codeVerification']);
 
 Route::middleware('auth:api')->group(function () {
@@ -39,6 +39,3 @@ Route::middleware('auth:api')->group(function () {
 });
 });
 
-Route::get('/test', function () {
-    return "test()";
-});

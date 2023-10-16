@@ -17,6 +17,7 @@ class ToDoController extends AppBaseController
     public function index()
     {
         $todos = ToDo::where('user_id', Auth::id())->paginate(10);
+        
         return response()->json(['todos' => $todos]);
     }
 
@@ -43,6 +44,7 @@ class ToDoController extends AppBaseController
     public function show(ToDo $todo)
     {
         if ($todo->userOwns()) {
+
             return response()->json(['todo' => $todo]);
         }
 
@@ -60,6 +62,7 @@ class ToDoController extends AppBaseController
     {
         if ($todo->userOwns()) {
             $todo->update($request->validated());
+
             return $this->sendSuccessResponse($todo, 'ToDo updated successfully');
         }
 
@@ -76,6 +79,7 @@ class ToDoController extends AppBaseController
     {
         if ($todo->userOwns()) {
             $todo->delete();
+
             return $this->sendSuccess('ToDo deleted successfully');
         }
 

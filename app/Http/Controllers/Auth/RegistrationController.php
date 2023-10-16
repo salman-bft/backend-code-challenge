@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\AppBaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\UserRegisterationRequest;
 use App\Services\RegisterService;
 use Exception;
 
-class RegistrationController extends Controller
+class RegistrationController extends AppBaseController
 {
      /**
      * The RegisterService instance.
