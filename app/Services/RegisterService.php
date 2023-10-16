@@ -28,7 +28,7 @@ class RegisterService
         $input = $request;
         $input['password'] = Hash::make($request['password']);
         $user = User::create($input);
-        $result = $this->emailCodeSend($input);
+        $this->emailCodeSend($input);
 
         return $user;
     }

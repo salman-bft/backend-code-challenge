@@ -35,13 +35,17 @@ class VerificationController extends AppBaseController
     public function codeVerification(CodeVerificationRequest $request)
     {
         try {
+            // Validate the incoming request
             $validatedData = $request->validated();
+            // Create a new request instance with the validated data
             $requestInstance = new Request($validatedData);
+            // Verify the code using the verification service
             $verification = $this->verificationService->verifyCode($requestInstance);
-
+            // Respond with success message
+            
             return $this->sendSuccess('Verified'); // Successful verification
         } catch (Exception $e) {
-            
+            // Respond with an error message in case of an exception
             return $this->sendError($e->getMessage());
         }
     }

@@ -19,12 +19,10 @@ class VerificationService
     public function verifyCode($request)
     {
         $curTime = now(); // Current time
-
         $user = User::where('email', $request->email)
             ->where('verification_code', $request->code)
             ->where('verification_code_expiry', '>=', $curTime)
             ->first();
-
         if (isset($user)) {
             // Mark the user as verified
             $user->update([
