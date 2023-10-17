@@ -16,7 +16,7 @@ class ToDoController extends AppBaseController
      */
     public function index()
     {
-        $todos = ToDo::where('user_id', Auth::id())->paginate(10);
+        $todos = ToDo::paginate(10);
         
         return response()->json(['todos' => $todos]);
     }
